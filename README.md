@@ -1,3 +1,9 @@
+
+![npm](https://img.shields.io/npm/v/base58-core)
+![npm downloads](https://img.shields.io/npm/dm/base58-core)
+![license](https://img.shields.io/npm/l/base58-core)
+![bundle size](https://img.shields.io/bundlephobia/min/base58-core)
+
 # @base58/core
 
 Fast, tree-shakeable Base58 encoding with TypeScript support. Zero dependencies.
