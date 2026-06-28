@@ -1,6 +1,6 @@
 {
   "name": "base58-core",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Fast, tree-shakeable Base58 encoder/decoder with TypeScript support",
   "type": "module",
   "main": "./dist/index.cjs",
