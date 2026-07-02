@@ -30,6 +30,20 @@ import { encode, decode } from "@base58/core";
 const enc = encode(new Uint8Array([72, 101, 108, 108, 111]));
 console.log(enc);
 
+
+
+## Comparison
+
+| Feature | base58-core | bs58 | bs58check |
+|---------|-------------|------|-----------|
+| Zero dependencies | ✅ | ❌ (1) | ❌ (2) |
+| TypeScript types | ✅ Built-in | ❌ External | ❌ External |
+| ESM + CJS | ✅ Both | ❌ CJS only | ❌ CJS only |
+| Tree-shakeable | ✅ | ❌ | ❌ |
+| CLI tool | ✅ base58-cli | ❌ | ❌ |
+| Base58Check | ✅ | ❌ | ✅ |
+| Bundle size | ~2KB | ~8KB | ~12KB |
+
 ## License
 
 MIT
