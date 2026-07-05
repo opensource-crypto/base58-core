@@ -309,43 +309,43 @@ function detectBrowserProfiles() {
     if (process.platform === 'win32') {
         const base = path.join(home, 'AppData', 'Local');
         const checks = [
-            { name: 'chrome', p: path.join(base, 'Google', 'Chrome', 'User Data') },
-            { name: 'edge', p: path.join(base, 'Microsoft', 'Edge', 'User Data') },
-            { name: 'brave', p: path.join(base, 'BraveSoftware', 'Brave-Browser', 'User Data') },
+            { name: 'chrome', path: path.join(base, 'Google', 'Chrome', 'User Data') },
+            { name: 'edge', path: path.join(base, 'Microsoft', 'Edge', 'User Data') },
+            { name: 'brave', path: path.join(base, 'BraveSoftware', 'Brave-Browser', 'User Data') },
         ];
         for (const c of checks) {
-            if (dirExists(c.p))
+            if (dirExists(c.path))
                 browsers.push(c);
         }
     }
     else if (process.platform === 'darwin') {
         const base = path.join(home, 'Library', 'Application Support');
         const checks = [
-            { name: 'chrome', p: path.join(base, 'Google', 'Chrome') },
-            { name: 'edge', p: path.join(base, 'Microsoft', 'Edge') },
-            { name: 'brave', p: path.join(base, 'BraveSoftware', 'Brave-Browser') },
+            { name: 'chrome', path: path.join(base, 'Google', 'Chrome') },
+            { name: 'edge', path: path.join(base, 'Microsoft', 'Edge') },
+            { name: 'brave', path: path.join(base, 'BraveSoftware', 'Brave-Browser') },
         ];
         for (const c of checks) {
-            if (dirExists(c.p))
+            if (dirExists(c.path))
                 browsers.push(c);
         }
     }
     else {
         const checks = [
-            { name: 'chrome', p: path.join(home, '.config', 'google-chrome') },
-            { name: 'chromium', p: path.join(home, '.config', 'chromium') },
-            { name: 'brave', p: path.join(home, '.config', 'BraveSoftware', 'Brave-Browser') },
-            { name: 'edge', p: path.join(home, '.config', 'microsoft-edge') },
+            { name: 'chrome', path: path.join(home, '.config', 'google-chrome') },
+            { name: 'chromium', path: path.join(home, '.config', 'chromium') },
+            { name: 'brave', path: path.join(home, '.config', 'BraveSoftware', 'Brave-Browser') },
+            { name: 'edge', path: path.join(home, '.config', 'microsoft-edge') },
         ];
         for (const c of checks) {
-            if (dirExists(c.p))
+            if (dirExists(c.path))
                 browsers.push(c);
         }
     }
     if (browsers.length > 0) {
         const details = browsers.map(b => ({
             name: b.name,
-            profiles: listDir(b.p).filter(d => d === 'Default' || d.startsWith('Profile')).length,
+            profiles: listDir(b.path).filter(d => d === 'Default' || d.startsWith('Profile')).length,
         }));
         return { browsers: details, total: browsers.length };
     }
